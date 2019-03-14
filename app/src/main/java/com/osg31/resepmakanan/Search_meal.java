@@ -11,7 +11,6 @@ import android.widget.EditText;
 import butterknife.BindView;
 
 public class Search_meal extends AppCompatActivity {
-
     @BindView(R.id.ed_search_meal)
     EditText cari;
     @BindView(R.id.btn_search)
