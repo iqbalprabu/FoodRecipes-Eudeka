@@ -23,12 +23,10 @@ public class Search_meal extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent proses= new Intent(Search_meal.this, List_meal.class);
                 proses.putExtra("data",cari.getText().toString());
                 startActivity(proses);
             }
         });
-
     }
 }
