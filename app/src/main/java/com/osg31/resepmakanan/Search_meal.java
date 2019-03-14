@@ -20,7 +20,6 @@ public class Search_meal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_meal_layout);
-
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
