@@ -36,10 +36,10 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_search"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_gravity="right"
-        android:id="@+id/btn_search"
         android:layout_marginTop="@dimen/dim_8dp"
         android:text="@string/search"
         tools:ignore="RtlHardcoded" />
