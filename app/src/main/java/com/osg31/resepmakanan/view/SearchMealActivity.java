@@ -1,17 +1,17 @@
-package com.osg31.resepmakanan;
+package com.osg31.resepmakanan.view;
 
 import android.content.Intent;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.osg31.resepmakanan.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Search_meal extends AppCompatActivity {
+public class SearchMealActivity extends AppCompatActivity {
 
     @BindView(R.id.ed_search_meal) EditText cari;
     @BindView(R.id.btn_search) Button ok;
@@ -23,7 +23,7 @@ public class Search_meal extends AppCompatActivity {
         ButterKnife.bind(this);
 
         ok.setOnClickListener(v -> {
-            Intent proses= new Intent(Search_meal.this, List_meal.class);
+            Intent proses= new Intent(SearchMealActivity.this, ListMealActivity.class);
             proses.putExtra("data",cari.getText().toString());
             startActivity(proses);
         });

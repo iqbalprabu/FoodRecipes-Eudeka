@@ -1,9 +1,11 @@
-package com.osg31.resepmakanan;
+package com.osg31.resepmakanan.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class List_meal extends AppCompatActivity {
+import com.osg31.resepmakanan.R;
+
+public class ListMealActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
