@@ -1,10 +1,10 @@
 package com.osg31.resepmakanan.data;
 
 import com.osg31.resepmakanan.model.Meals;
-
+import android.content.Context;
 public interface MealDataSource {
 
-    void getAllMeals(String search, GetMealCallback callback);
+    void getAllMeals(Context search, GetMealCallback callback);
 
     interface GetMealCallback {
         void onMealLoaded(Meals data);
