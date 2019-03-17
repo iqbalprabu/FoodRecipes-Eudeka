@@ -25,8 +25,8 @@ public class SearchMealActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         ok.setOnClickListener(v -> {
-            Intent proses = new Intent(SearchMealActivity.this, ListMealActivity.class);
-            proses.putExtra("data", cari.getText().toString());
+            Intent proses= new Intent(SearchMealActivity.this, ListMealActivity.class);
+            proses.putExtra("data",cari.getText().toString());
             startActivity(proses);
         });
     }
