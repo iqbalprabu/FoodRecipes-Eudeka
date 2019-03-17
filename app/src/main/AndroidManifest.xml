@@ -9,10 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.ListMealActivity">
-
-        </activity>
-
         <activity android:name=".view.SearchMealActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            </activity>
+        </activity>
+
+        <activity
+            android:name=".view.ListMealActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
 
     </application>
 
