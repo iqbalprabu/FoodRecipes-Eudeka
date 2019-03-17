@@ -1,7 +1,5 @@
 package com.osg31.resepmakanan.viewmodel;
 
-import android.content.Context;
-
 import com.osg31.resepmakanan.data.MealDataSource;
 import com.osg31.resepmakanan.data.MealRepository;
 import com.osg31.resepmakanan.model.Meals;
@@ -11,15 +9,11 @@ public class ListMealViewModel {
 
     private MealRepository mealRepository;
     private MealNavigator mealNavigator;
-    private Context context;
 
-    public ListMealViewModel(MealRepository mealRepository, Context context) {
+
+    public ListMealViewModel(MealRepository mealRepository, MealNavigator mealNavigator) {
         this.mealRepository = mealRepository;
-        this.context = context;
-    }
-
-    public void setNavigator(MealNavigator navigator) {
-        mealNavigator = navigator;
+        this.mealNavigator = mealNavigator;
     }
 
     public void getListMeal(String search) {
