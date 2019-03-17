@@ -8,6 +8,7 @@ public interface MealDataSource {
 
     interface GetMealCallback {
         void onMealLoaded(Meals data);
+
         void onDataNotAvailable(String errorMessage);
     }
 
