@@ -24,4 +24,18 @@ public class MealRepository implements MealDataSource {
             }
         });
     }
+
+    public void getDetailMeal(String idMeal, GetDetailCallback callback) {
+        mealRemoteDataSource.getDetailMeal(idMeal, new GetDetailCallback() {
+            @Override
+            public void onDetailMealLoaded(Meals data) {
+                callback.onDetailMealLoaded(data);
+            }
+
+            @Override
+            public void onDataNotAvailable(String errorMessage) {
+                callback.onDataNotAvailable(errorMessage);
+            }
+        });
+    }
 }

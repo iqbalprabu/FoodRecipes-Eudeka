@@ -1,10 +1,12 @@
 package com.osg31.resepmakanan.model;
 
+
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
 import com.google.gson.annotations.SerializedName;
 import com.squareup.picasso.Picasso;
+
 
 public class MealDetail {
 
@@ -117,7 +119,7 @@ public class MealDetail {
     public String strMeasure14;
 
 
-    @BindingAdapter({"mealThumbnail"})
+    @BindingAdapter({"strMealThumb"})
     public static void loadImage(ImageView view, String imageUrl) {
         Picasso.get().
                 load(imageUrl).

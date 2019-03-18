@@ -11,4 +11,7 @@ public interface ApiInterface {
     @GET("api/json/v1/1/search.php")
     Call<Meals> getAllMeals(@Query("s") String search);
 
+    @GET("api/json/v1/1/lookup.php")
+    Call<Meals> getDetailMeal(@Query("i") String idMeal);
+
 }

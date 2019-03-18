@@ -1,17 +1,19 @@
 package com.osg31.resepmakanan.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.osg31.resepmakanan.R;
 import com.osg31.resepmakanan.databinding.ItemMealBinding;
 import com.osg31.resepmakanan.model.MealDetail;
+import com.osg31.resepmakanan.view.MealDetailActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterListMeal extends RecyclerView.Adapter<AdapterListMeal.MealViewHolder> {
@@ -19,10 +21,15 @@ public class AdapterListMeal extends RecyclerView.Adapter<AdapterListMeal.MealVi
     private List<MealDetail> dataMealSet;
     private Context context;
 
-    //TODO (1)initialize constructor adapter on one time
-    public AdapterListMeal(Context context) {
+//    //TODO (1)initialize constructor adapter on one time
+//    public AdapterListMeal(Context context) {
+//        this.context = context;
+//        this.dataMealSet = new ArrayList<>();
+//    }
+
+    public AdapterListMeal(List<MealDetail> dataMealSet, Context context) {
+        this.dataMealSet = dataMealSet;
         this.context = context;
-        this.dataMealSet = new ArrayList<>();
     }
 
     @NonNull
@@ -36,6 +43,15 @@ public class AdapterListMeal extends RecyclerView.Adapter<AdapterListMeal.MealVi
     @Override
     public void onBindViewHolder(@NonNull MealViewHolder mealViewHolder, int i) {
         mealViewHolder.mealBinding.setItemmealVM(dataMealSet.get(i));
+        mealViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String idMeal = dataMealSet.get(i).idMeal;
+                Intent detailMeal = new Intent(context, MealDetailActivity.class);
+                detailMeal.putExtra(MealDetailActivity.DETAIL, idMeal);
+                context.startActivity(detailMeal);
+            }
+        });
     }
 
     @Override
@@ -60,6 +76,10 @@ public class AdapterListMeal extends RecyclerView.Adapter<AdapterListMeal.MealVi
         return dataMealSet.get(position);
     }
 
+    public boolean isEmpty() {
+        return getItemCount() < 1;
+    }
+
     class MealViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemMealBinding mealBinding;
@@ -67,7 +87,6 @@ public class AdapterListMeal extends RecyclerView.Adapter<AdapterListMeal.MealVi
         MealViewHolder(ItemMealBinding mealBinding) {
             super(mealBinding.getRoot());
             this.mealBinding = mealBinding;
-
         }
     }
 }

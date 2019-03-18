@@ -6,10 +6,17 @@ public interface MealDataSource {
 
     void getAllMeals(String search, GetMealCallback callback);
 
+    void getDetailMeal(String idMeal, GetDetailCallback callback);
+
     interface GetMealCallback {
         void onMealLoaded(Meals data);
 
         void onDataNotAvailable(String errorMessage);
     }
 
+    interface GetDetailCallback {
+        void onDetailMealLoaded(Meals data);
+
+        void onDataNotAvailable(String errorMessage);
+    }
 }

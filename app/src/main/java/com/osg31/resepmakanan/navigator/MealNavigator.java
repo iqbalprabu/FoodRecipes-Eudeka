@@ -9,5 +9,4 @@ public interface MealNavigator {
     void loadListMeal(List<MealDetail> mealDetailList);
 
     void onErrorLoadMeal(String message);
-
 }
