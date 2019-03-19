@@ -1,5 +1,6 @@
 package com.osg31.resepmakanan.data;
 
+import com.osg31.resepmakanan.model.MealDetail;
 import com.osg31.resepmakanan.model.Meals;
 
 public interface MealDataSource {
@@ -10,13 +11,11 @@ public interface MealDataSource {
 
     interface GetMealCallback {
         void onMealLoaded(Meals data);
-
         void onDataNotAvailable(String errorMessage);
     }
 
     interface GetDetailCallback {
-        void onDetailMealLoaded(Meals data);
-
+        void onDetailMealLoaded(MealDetail data);
         void onDataNotAvailable(String errorMessage);
     }
 }

@@ -25,22 +25,15 @@ import butterknife.ButterKnife;
 public class MealDetailActivity extends AppCompatActivity implements DetailMealNavigator {
 
     public static final String DETAIL = "detail";
-    @BindView(R.id.tv_title_meal_detail)
-    TextView tvTitleMeal;
-    @BindView(R.id.tv_category_meal_detail)
-    TextView tvCategoryMeal;
-    @BindView(R.id.tv_description_meal_detail)
-    TextView tvDescMeal;
-    @BindView(R.id.iv_poster_detail)
-    ImageView ivPosterDetail;
-    @BindView(R.id.cl_detail_meal)
-    CoordinatorLayout clDetailMeal;
-    @BindView(R.id.collapsing_detail)
-    CollapsingToolbarLayout collapsingDetail;
-    @BindView(R.id.toolbar_detail)
-    Toolbar toolbarDetail;
 
-    private List<MealDetail> list = new ArrayList<>();
+    @BindView(R.id.tv_title_meal_detail) TextView tvTitleMeal;
+    @BindView(R.id.tv_category_meal_detail) TextView tvCategoryMeal;
+    @BindView(R.id.tv_description_meal_detail) TextView tvDescMeal;
+    @BindView(R.id.iv_poster_detail) ImageView ivPosterDetail;
+    @BindView(R.id.cl_detail_meal) CoordinatorLayout clDetailMeal;
+    @BindView(R.id.collapsing_detail) CollapsingToolbarLayout collapsingDetail;
+    @BindView(R.id.toolbar_detail) Toolbar toolbarDetail;
+
     private MealDetailViewModel mealViewModel;
 
     @Override
@@ -51,24 +44,23 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
 
         String idMeal = getIntent().getStringExtra(DETAIL);
 
-        mealViewModel = new MealDetailViewModel(Injection.provideMealRepository(this), this);
+        mealViewModel = new MealDetailViewModel(Injection.provideMealRepository(this));
         mealViewModel.setNavigator(this);
         mealViewModel.getDetailMeal(idMeal);
     }
 
-    private void initActionBar(List<MealDetail> list) {
+    private void initActionBar(MealDetail mealDetail) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            toolbarDetail.setTitle(list.get(0).strMeal);
+            toolbarDetail.setTitle(mealDetail.strMeal);
             setSupportActionBar(toolbarDetail);
         }
         if (getSupportActionBar() != null) getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
-    public void loadDetailtMeal(List<MealDetail> mealDetailList) {
-        list.addAll(mealDetailList);
-        initActionBar(list);
-        loadMealDetail(list);
+    public void loadDetailtMeal(MealDetail mealDetail) {
+        initActionBar(mealDetail);
+        loadMealDetail(mealDetail);
     }
 
     @Override
@@ -76,12 +68,12 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
         Snackbar.make(findViewById(android.R.id.content), "Check Your Connection", Snackbar.LENGTH_SHORT).show();
     }
 
-    private void loadMealDetail(List<MealDetail> list) {
-        MealDetail.loadImage(ivPosterDetail, list.get(0).strMealThumb);
+    private void loadMealDetail(MealDetail mealDetail) {
+        MealDetail.loadImage(ivPosterDetail, mealDetail.strMealThumb);
 
-        tvTitleMeal.setText(list.get(0).strMeal);
-        tvCategoryMeal.setText(list.get(0).strCategory);
-        tvDescMeal.setText(list.get(0).strInstructions);
+        tvTitleMeal.setText(mealDetail.strMeal);
+        tvCategoryMeal.setText(mealDetail.strCategory);
+        tvDescMeal.setText(mealDetail.strInstructions);
     }
 
     @Override

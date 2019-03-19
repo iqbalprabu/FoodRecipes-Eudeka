@@ -1,6 +1,7 @@
 package com.osg31.resepmakanan.data;
 
 import com.osg31.resepmakanan.data.remote.MealRemoteDataSource;
+import com.osg31.resepmakanan.model.MealDetail;
 import com.osg31.resepmakanan.model.Meals;
 
 public class MealRepository implements MealDataSource {
@@ -28,7 +29,7 @@ public class MealRepository implements MealDataSource {
     public void getDetailMeal(String idMeal, GetDetailCallback callback) {
         mealRemoteDataSource.getDetailMeal(idMeal, new GetDetailCallback() {
             @Override
-            public void onDetailMealLoaded(Meals data) {
+            public void onDetailMealLoaded(MealDetail data) {
                 callback.onDetailMealLoaded(data);
             }
 

@@ -11,11 +11,9 @@ public class ListMealViewModel {
 
     private MealRepository mealRepository;
     private MealNavigator mealNavigator;
-    private Context context;
 
-    public ListMealViewModel(MealRepository mealRepository, Context context) {
+    public ListMealViewModel(MealRepository mealRepository) {
         this.mealRepository = mealRepository;
-        this.context = context;
     }
 
     public void setNavigator(MealNavigator navigator) {

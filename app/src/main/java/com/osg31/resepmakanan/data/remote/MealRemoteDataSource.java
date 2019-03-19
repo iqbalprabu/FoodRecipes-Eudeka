@@ -33,7 +33,7 @@ public class MealRemoteDataSource implements MealDataSource {
         call.enqueue(new Callback<Meals>() {
             @Override
             public void onResponse(Call<Meals> call, Response<Meals> response) {
-                callback.onDetailMealLoaded(response.body());
+                callback.onDetailMealLoaded(response.body().getMeals().get(0));
             }
 
             @Override
