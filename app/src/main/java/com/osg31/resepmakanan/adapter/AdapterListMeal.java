@@ -43,6 +43,11 @@ public class AdapterListMeal extends RecyclerView.Adapter<AdapterListMeal.MealVi
         return dataMealSet.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return Long.valueOf(dataMealSet.get(position).idMeal);
+    }
+
     public void addAll(List<MealDetail> dataBind) {
         this.dataMealSet.addAll(dataBind);
         notifyDataSetChanged();

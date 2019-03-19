@@ -60,6 +60,7 @@ public class ListMealActivity extends AppCompatActivity implements MealNavigator
         swRefreshLayout.setOnRefreshListener(() -> {
             swRefreshLayout.setRefreshing(true);
             if (swRefreshLayout.isRefreshing()) {
+                swRefreshLayout.setRefreshing(false);
                 mealViewModel.getListMeal(meal);
             } else {
                 swRefreshLayout.setRefreshing(true);
@@ -77,6 +78,7 @@ public class ListMealActivity extends AppCompatActivity implements MealNavigator
     private void initAdapter() {
         rvListMenu.setLayoutManager(new GridLayoutManager(this, 2));
         adapterListMeal = new AdapterListMeal(new ArrayList<>(), this);
+        adapterListMeal.setHasStableIds(true);
         rvListMenu.addOnItemTouchListener(new RecyclerItemTouchListener(this, rvListMenu,
                 new RecyclerItemTouchListener.onItemClickListener() {
                     @Override
