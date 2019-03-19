@@ -26,4 +26,20 @@ public class MealRemoteDataSource implements MealDataSource {
             }
         });
     }
+
+    @Override
+    public void getDetailMeal(String idMeal, GetDetailCallback callback) {
+        Call<Meals> call = apiInterface.getDetailMeal(idMeal);
+        call.enqueue(new Callback<Meals>() {
+            @Override
+            public void onResponse(Call<Meals> call, Response<Meals> response) {
+                callback.onDetailMealLoaded(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Meals> call, Throwable t) {
+                callback.onDataNotAvailable(t.toString());
+            }
+        });
+    }
 }
