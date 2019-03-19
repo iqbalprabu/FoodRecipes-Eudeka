@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
 import com.osg31.resepmakanan.Injection;
 import com.osg31.resepmakanan.R;
 import com.osg31.resepmakanan.adapter.AdapterListMeal;
@@ -17,16 +18,21 @@ import com.osg31.resepmakanan.model.MealDetail;
 import com.osg31.resepmakanan.navigator.MealNavigator;
 import com.osg31.resepmakanan.utils.RecyclerItemTouchListener;
 import com.osg31.resepmakanan.viewmodel.ListMealViewModel;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ListMealActivity extends AppCompatActivity implements MealNavigator, RecyclerItemTouchListener.onItemClickListener {
+public class ListMealActivity extends AppCompatActivity implements MealNavigator {
 
-    @BindView(R.id.rv_recipe_list) RecyclerView rvListMenu;
-    @BindView(R.id.sw_refresh_layout) SwipeRefreshLayout swRefreshLayout;
-    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.rv_recipe_list)
+    RecyclerView rvListMenu;
+    @BindView(R.id.sw_refresh_layout)
+    SwipeRefreshLayout swRefreshLayout;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     private AdapterListMeal adapterListMeal;
     private ListMealViewModel mealViewModel;
@@ -72,7 +78,20 @@ public class ListMealActivity extends AppCompatActivity implements MealNavigator
         rvListMenu.setLayoutManager(new GridLayoutManager(this, 2));
         adapterListMeal = new AdapterListMeal(new ArrayList<>(), this);
         rvListMenu.addOnItemTouchListener(new RecyclerItemTouchListener(this, rvListMenu,
-                this));
+                new RecyclerItemTouchListener.onItemClickListener() {
+                    @Override
+                    public void onClickSingle(View view, int position) {
+                        String idMeal = adapterListMeal.getItem(position).idMeal;
+                        Intent detailMeal = new Intent(ListMealActivity.this, MealDetailActivity.class);
+                        detailMeal.putExtra(MealDetailActivity.DETAIL, idMeal);
+                        startActivity(detailMeal);
+                    }
+
+                    @Override
+                    public void onLongClick(View view, int position) {
+
+                    }
+                }));
         rvListMenu.setAdapter(adapterListMeal);
     }
 
@@ -106,16 +125,4 @@ public class ListMealActivity extends AppCompatActivity implements MealNavigator
         }
     }
 
-    @Override
-    public void onClickSingle(View view, int position) {
-        String idMeal = adapterListMeal.getItem(position).idMeal;
-        Intent detailMeal = new Intent(this, MealDetailActivity.class);
-        detailMeal.putExtra(MealDetailActivity.DETAIL, idMeal);
-        startActivity(detailMeal);
-    }
-
-    @Override
-    public void onLongClick(View view, int position) {
-
-    }
 }

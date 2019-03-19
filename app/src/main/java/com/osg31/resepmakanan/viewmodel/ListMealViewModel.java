@@ -1,7 +1,5 @@
 package com.osg31.resepmakanan.viewmodel;
 
-import android.content.Context;
-
 import com.osg31.resepmakanan.data.MealDataSource;
 import com.osg31.resepmakanan.data.MealRepository;
 import com.osg31.resepmakanan.model.Meals;

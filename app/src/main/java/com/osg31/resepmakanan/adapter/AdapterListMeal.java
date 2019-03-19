@@ -1,20 +1,16 @@
 package com.osg31.resepmakanan.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.osg31.resepmakanan.R;
 import com.osg31.resepmakanan.databinding.ItemMealBinding;
 import com.osg31.resepmakanan.model.MealDetail;
 import com.osg31.resepmakanan.utils.RecyclerItemTouchListener;
-import com.osg31.resepmakanan.view.MealDetailActivity;
 
 import java.util.List;
 
@@ -61,13 +57,13 @@ public class AdapterListMeal extends RecyclerView.Adapter<AdapterListMeal.MealVi
         return dataMealSet.get(position);
     }
 
-    public boolean isEmpty() {
-        return getItemCount() < 1;
-    }
-
-    public void setRecyclerItemTouchListener(RecyclerItemTouchListener recyclerItemTouchListener) {
-        this.recyclerItemTouchListener = recyclerItemTouchListener;
-    }
+//    public boolean isEmpty() {
+//        return getItemCount() < 1;
+//    }
+//
+//    public void setRecyclerItemTouchListener(RecyclerItemTouchListener recyclerItemTouchListener) {
+//        this.recyclerItemTouchListener = recyclerItemTouchListener;
+//    }
 
     class MealViewHolder extends RecyclerView.ViewHolder {
 

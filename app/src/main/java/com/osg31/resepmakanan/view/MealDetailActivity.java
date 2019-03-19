@@ -20,9 +20,6 @@ import com.osg31.resepmakanan.model.MealDetail;
 import com.osg31.resepmakanan.navigator.DetailMealNavigator;
 import com.osg31.resepmakanan.viewmodel.MealDetailViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -39,6 +36,7 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
     @BindView(R.id.toolbar_detail) Toolbar toolbarDetail;
     private Menu collapsedMenu;
     private boolean appBarExpanded = true;
+
     private MealDetailViewModel mealViewModel;
     private AppBarLayout appBarLayout;
     @Override

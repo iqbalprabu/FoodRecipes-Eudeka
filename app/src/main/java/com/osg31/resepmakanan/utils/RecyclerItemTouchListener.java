@@ -23,26 +23,13 @@ public class RecyclerItemTouchListener implements RecyclerView.OnItemTouchListen
 
     public RecyclerItemTouchListener(Context context, RecyclerView recyclerView, RecyclerItemTouchListener.onItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
-        gestureDetector = new GestureDetector(context, new GestureDetector.OnGestureListener() {
-            @Override
-            public boolean onDown(MotionEvent e) {
-                return false;
-            }
-
-            @Override
-            public void onShowPress(MotionEvent e) {
-
-            }
+        gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
 
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
                 return true;
             }
 
-            @Override
-            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                return false;
-            }
 
             @Override
             public void onLongPress(MotionEvent e) {
@@ -52,17 +39,13 @@ public class RecyclerItemTouchListener implements RecyclerView.OnItemTouchListen
                 }
             }
 
-            @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                return false;
-            }
         });
     }
 
     @Override
     public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
         View xView = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-        if (xView != null && onItemClickListener != null && gestureDetector != null) {
+        if (xView != null && onItemClickListener != null && gestureDetector.onTouchEvent(motionEvent)) {
             onItemClickListener.onClickSingle(xView, recyclerView.getChildAdapterPosition(xView));
         }
         return false;
