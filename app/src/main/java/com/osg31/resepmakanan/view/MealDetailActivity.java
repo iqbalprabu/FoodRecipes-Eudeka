@@ -16,9 +16,6 @@ import com.osg31.resepmakanan.model.MealDetail;
 import com.osg31.resepmakanan.navigator.DetailMealNavigator;
 import com.osg31.resepmakanan.viewmodel.MealDetailViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -26,13 +23,20 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
 
     public static final String DETAIL = "detail";
 
-    @BindView(R.id.tv_title_meal_detail) TextView tvTitleMeal;
-    @BindView(R.id.tv_category_meal_detail) TextView tvCategoryMeal;
-    @BindView(R.id.tv_description_meal_detail) TextView tvDescMeal;
-    @BindView(R.id.iv_poster_detail) ImageView ivPosterDetail;
-    @BindView(R.id.cl_detail_meal) CoordinatorLayout clDetailMeal;
-    @BindView(R.id.collapsing_detail) CollapsingToolbarLayout collapsingDetail;
-    @BindView(R.id.toolbar_detail) Toolbar toolbarDetail;
+    @BindView(R.id.tv_title_meal_detail)
+    TextView tvTitleMeal;
+    @BindView(R.id.tv_category_meal_detail)
+    TextView tvCategoryMeal;
+    @BindView(R.id.tv_description_meal_detail)
+    TextView tvDescMeal;
+    @BindView(R.id.iv_poster_detail)
+    ImageView ivPosterDetail;
+    @BindView(R.id.cl_detail_meal)
+    CoordinatorLayout clDetailMeal;
+    @BindView(R.id.collapsing_detail)
+    CollapsingToolbarLayout collapsingDetail;
+    @BindView(R.id.toolbar_detail)
+    Toolbar toolbarDetail;
 
     private MealDetailViewModel mealViewModel;
 

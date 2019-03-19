@@ -1,7 +1,6 @@
 package com.osg31.resepmakanan.model;
 
 
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
