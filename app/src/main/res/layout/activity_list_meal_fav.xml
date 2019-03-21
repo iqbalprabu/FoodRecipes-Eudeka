@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_semi_gray"
-    tools:context=".view.ListMealActivity">
+    android:background="@color/color_semi_gray">
 
     <include layout="@layout/toolbar_layout" />
 
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sw_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sw_refresh_layout"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
@@ -24,12 +23,13 @@
                 android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
-                tools:listitem="@layout/item_meal"
                 android:id="@+id/rv_recipe_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dim_8dp"
+                android:paddingRight="@dimen/dim_8dp"
                 android:paddingBottom="@dimen/dim_8dp"
-                android:paddingRight="@dimen/dim_8dp" />
+                tools:listitem="@layout/item_meal_favorite" />
 
 
         </RelativeLayout>
