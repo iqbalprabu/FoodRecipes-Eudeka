@@ -76,7 +76,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:scaleType="center"
-                android:src="@drawable/ic_delete__32dp" />
+                android:src="@drawable/ic_delete__32dp"
+                android:contentDescription="@string/delete_favorite" />
 
         </FrameLayout>
     </android.support.design.widget.CoordinatorLayout>

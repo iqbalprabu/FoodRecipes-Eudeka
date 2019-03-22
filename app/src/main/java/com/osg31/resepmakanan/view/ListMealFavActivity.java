@@ -14,5 +14,9 @@ public class ListMealFavActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_meal_fav);
+        //todo casting id item recyler view favorite for handle click of one item from inherit view
+        /*
+         * ImageView btnDelete = (ImageView) view.findViewById(id imageview)
+         * */
     }
 }
