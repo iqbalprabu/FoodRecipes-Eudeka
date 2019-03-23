@@ -3,7 +3,10 @@ package com.osg31.resepmakanan.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.content.Intent;
+import android.databinding.BindingAdapter;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 @Entity(tableName = "mealFavorite")
 public class MealFavorite {
@@ -53,4 +56,14 @@ public class MealFavorite {
     public void setMealCategory(String mealCategory) {
         this.mealCategory = mealCategory;
     }
+
+    @BindingAdapter({"mealThumbnail"})
+    public static void loadImage(ImageView view, String imageUrl) {
+        Picasso.get().
+                load(imageUrl).
+                into(view);
+
+    }
+
+
 }

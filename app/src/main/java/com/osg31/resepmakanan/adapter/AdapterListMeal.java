@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.osg31.resepmakanan.R;
 import com.osg31.resepmakanan.databinding.ItemMealBinding;
 import com.osg31.resepmakanan.model.MealDetail;
-import com.osg31.resepmakanan.utils.RecyclerItemTouchListener;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class AdapterListMeal extends RecyclerView.Adapter<AdapterListMeal.MealVi
 
     private List<MealDetail> dataMealSet;
     private Context context;
-    private RecyclerItemTouchListener recyclerItemTouchListener;
+
 
     public AdapterListMeal(List<MealDetail> dataMealSet, Context context) {
         this.dataMealSet = dataMealSet;
@@ -62,13 +61,6 @@ public class AdapterListMeal extends RecyclerView.Adapter<AdapterListMeal.MealVi
         return dataMealSet.get(position);
     }
 
-//    public boolean isEmpty() {
-//        return getItemCount() < 1;
-//    }
-//
-//    public void setRecyclerItemTouchListener(RecyclerItemTouchListener recyclerItemTouchListener) {
-//        this.recyclerItemTouchListener = recyclerItemTouchListener;
-//    }
 
     class MealViewHolder extends RecyclerView.ViewHolder {
 
