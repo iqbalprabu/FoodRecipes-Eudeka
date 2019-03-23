@@ -20,14 +20,7 @@ public class FavoriteRepository implements MealFavoriteDataSource {
 
     @Override
     public void insertFavoriteMeal(MealDetail mealDetail) {
-        MealFavorite mealFavorite = new MealFavorite();
-
-        mealFavorite.setMealId(Integer.valueOf(mealDetail.idMeal));
-        mealFavorite.setMealName(mealDetail.strMeal);
-        mealFavorite.setMealCategory(mealDetail.strCategory);
-        mealFavorite.setMealThumbnail(mealDetail.strMealThumb);
-
-        favoriteLocalDataSource.insertFavoriteMeal(mealFavorite);
+        favoriteLocalDataSource.insertFavoriteMeal(mealDetail);
     }
 
     @Override

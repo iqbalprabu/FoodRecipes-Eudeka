@@ -3,6 +3,7 @@ package com.osg31.resepmakanan.data.local;
 import android.content.Context;
 
 import com.osg31.resepmakanan.data.MealFavoriteDataSource;
+import com.osg31.resepmakanan.model.MealDetail;
 import com.osg31.resepmakanan.model.MealFavorite;
 
 import java.util.List;
@@ -31,8 +32,16 @@ public class FavoriteLocalDataSource implements MealFavoriteDataSource {
     }
 
     @Override
-    public void insertFavoriteMeal(MealFavorite mealFavorite) {
+    public void insertFavoriteMeal(MealDetail mealDetail) {
         Runnable runnable = () -> {
+
+            MealFavorite mealFavorite = new MealFavorite();
+
+            mealFavorite.setMealId(Integer.valueOf(mealDetail.idMeal));
+            mealFavorite.setMealName(mealDetail.strMeal);
+            mealFavorite.setMealCategory(mealDetail.strCategory);
+            mealFavorite.setMealThumbnail(mealDetail.strMealThumb);
+
             favoriteDao.inserFavorite(mealFavorite);
         };
 
@@ -40,9 +49,18 @@ public class FavoriteLocalDataSource implements MealFavoriteDataSource {
     }
 
     @Override
-    public void deleteFavoriteMeal(MealFavorite mealFavorite) {
+    public void deleteFavoriteMeal(String idMeal) {
         Runnable runnable = () -> {
-            favoriteDao.deleteFavorite(mealFavorite);
+            favoriteDao.deleteFavorite(idMeal);
+        };
+
+        new Thread(runnable).start();
+    }
+
+    @Override
+    public void checkIsMealFavorite(String idMeal) {
+        Runnable runnable = () -> {
+            favoriteDao.findOneFavorite(idMeal);
         };
 
         new Thread(runnable).start();
