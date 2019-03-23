@@ -47,7 +47,8 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
 
         String idMeal = getIntent().getStringExtra(DETAIL);
 
-        mealViewModel = new MealDetailViewModel(Injection.provideMealRepository(this));
+        mealViewModel = new MealDetailViewModel(Injection.provideMealRepository(this),
+                Injection.provideFavoriteRepository(this));
         mealViewModel.setNavigator(this);
         mealViewModel.getDetailMeal(idMeal);
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);

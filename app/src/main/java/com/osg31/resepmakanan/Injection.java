@@ -17,7 +17,7 @@ public class Injection {
         return new MealRepository(new MealRemoteDataSource());
     }
 
-    public static FavoriteRepository proviceFavoriteRepository(Context context) {
+    public static FavoriteRepository provideFavoriteRepository(Context context) {
         return new FavoriteRepository(new FavoriteLocalDataSource(context));
     }
 

@@ -4,12 +4,10 @@ import com.osg31.resepmakanan.data.FavoriteRepository;
 import com.osg31.resepmakanan.data.MealDataSource;
 import com.osg31.resepmakanan.data.MealRepository;
 import com.osg31.resepmakanan.model.MealDetail;
+import com.osg31.resepmakanan.navigator.AddFavoriteNavigator;
 import com.osg31.resepmakanan.navigator.DeleteFavoriteNavigator;
 import com.osg31.resepmakanan.navigator.DetailMealNavigator;
-import com.osg31.resepmakanan.navigator.AddFavoriteNavigator;
 import com.osg31.resepmakanan.navigator.FindFavoriteNavigator;
-
-import java.sql.SQLException;
 
 public class MealDetailViewModel {
 
@@ -26,6 +24,7 @@ public class MealDetailViewModel {
         this.mealRepository = mealRepository;
         this.favoriteRepository = favoriteRepository;
     }
+
 
     public void getDetailMeal(String idMeal) {
         mealRepository.getDetailMeal(idMeal, new MealDataSource.GetDetailCallback() {
