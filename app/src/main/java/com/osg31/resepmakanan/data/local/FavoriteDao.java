@@ -16,10 +16,13 @@ public interface FavoriteDao {
     @Query("SELECT * FROM mealFavorite")
     List<MealFavorite> getAllFavoriteMeal();
 
+    @Query("SELECT * FROM mealFavorite WHERE meal_id = :idMeal")
+    MealFavorite findOneFavorite(String idMeal);
+
     @Insert
     void inserFavorite(MealFavorite mealFavorite);
 
-    @Delete
-    void deleteFavorite(MealFavorite mealFavorite);
+    @Query("DELETE FROM mealFavorite WHERE meal_id = :idMeal")
+    void deleteFavorite(String idMeal);
 
 }
