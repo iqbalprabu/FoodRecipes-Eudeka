@@ -1,9 +1,7 @@
 package com.osg31.resepmakanan.data;
 
 import com.osg31.resepmakanan.data.local.FavoriteLocalDataSource;
-import com.osg31.resepmakanan.data.remote.MealRemoteDataSource;
 import com.osg31.resepmakanan.model.MealDetail;
-import com.osg31.resepmakanan.model.MealFavorite;
 
 public class FavoriteRepository implements MealFavoriteDataSource {
 
