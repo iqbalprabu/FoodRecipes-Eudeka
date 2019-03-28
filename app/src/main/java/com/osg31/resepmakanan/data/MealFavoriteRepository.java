@@ -1,6 +1,7 @@
 package com.osg31.resepmakanan.data;
 
 import com.osg31.resepmakanan.data.local.FavoriteLocalDataSource;
+import com.osg31.resepmakanan.model.MealDetail;
 import com.osg31.resepmakanan.model.MealFavorite;
 
 import java.util.List;
@@ -29,12 +30,17 @@ public class MealFavoriteRepository implements MealFavoriteDataSource {
     }
 
     @Override
-    public void insertFavoriteMeal(MealFavorite mealFavorite) {
-        favoriteLocalDataSource.insertFavoriteMeal(mealFavorite);
+    public void insertFavoriteMeal(MealDetail mealDetail) {
+
     }
 
     @Override
-    public void deleteFavoriteMeal(MealFavorite mealFavorite) {
-        favoriteLocalDataSource.deleteFavoriteMeal(mealFavorite);
+    public void deleteFavoriteMeal(String idMeal) {
+
+    }
+
+    @Override
+    public void checkIsMealFavorite(String idMeal) {
+
     }
 }
