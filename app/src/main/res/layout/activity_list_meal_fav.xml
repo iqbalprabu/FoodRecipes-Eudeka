@@ -23,7 +23,7 @@
                 android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_recipe_list"
+                android:id="@+id/rv_recipe_list_fav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/dim_8dp"

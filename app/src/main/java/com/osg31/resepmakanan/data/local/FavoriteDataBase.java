@@ -7,7 +7,7 @@ import android.content.Context;
 
 import com.osg31.resepmakanan.model.MealFavorite;
 
-@Database(entities = {MealFavorite.class}, version = 1)
+@Database(entities = {MealFavorite.class}, version = 1, exportSchema = false)
 public abstract class FavoriteDataBase extends RoomDatabase {
 
     private static FavoriteDataBase INSTANCE;

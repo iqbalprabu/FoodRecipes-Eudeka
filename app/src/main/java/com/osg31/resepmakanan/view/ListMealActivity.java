@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
 
 public class ListMealActivity extends AppCompatActivity implements MealNavigator {
 
-    @BindView(R.id.rv_recipe_list)
+    @BindView(R.id.rv_recipe_list_fav)
     RecyclerView rvListMenu;
     @BindView(R.id.sw_refresh_layout)
     SwipeRefreshLayout swRefreshLayout;

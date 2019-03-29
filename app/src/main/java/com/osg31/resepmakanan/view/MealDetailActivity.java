@@ -52,19 +52,16 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
         mealViewModel.setNavigator(this);
         mealViewModel.getDetailMeal(idMeal);
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                Log.d(MealDetailActivity.class.getSimpleName(), "onOffsetChanged: verticalOffset: " + verticalOffset);
+        appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
+            Log.d(MealDetailActivity.class.getSimpleName(), "onOffsetChanged: verticalOffset: " + verticalOffset);
 
-                //  Vertical offset == 0 indicates appBar is fully expanded.
-                if (Math.abs(verticalOffset) > 200) {
-                    appBarExpanded = false;
-                    invalidateOptionsMenu();
-                } else {
-                    appBarExpanded = true;
-                    invalidateOptionsMenu();
-                }
+            //  Vertical offset == 0 indicates appBar is fully expanded.
+            if (Math.abs(verticalOffset) > 200) {
+                appBarExpanded = false;
+                invalidateOptionsMenu();
+            } else {
+                appBarExpanded = true;
+                invalidateOptionsMenu();
             }
         });
     }
