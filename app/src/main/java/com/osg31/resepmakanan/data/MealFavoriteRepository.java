@@ -31,16 +31,16 @@ public class MealFavoriteRepository implements MealFavoriteDataSource {
 
     @Override
     public void insertFavoriteMeal(MealDetail mealDetail) {
-
+        favoriteLocalDataSource.insertFavoriteMeal(mealDetail);
     }
 
     @Override
     public void deleteFavoriteMeal(String idMeal) {
-
+        favoriteLocalDataSource.deleteFavoriteMeal(idMeal);
     }
 
     @Override
     public void checkIsMealFavorite(String idMeal) {
-
+        favoriteLocalDataSource.checkIsMealFavorite(idMeal);
     }
 }
