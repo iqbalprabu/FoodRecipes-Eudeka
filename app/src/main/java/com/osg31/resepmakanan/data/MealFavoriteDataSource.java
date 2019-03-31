@@ -10,12 +10,17 @@ public interface MealFavoriteDataSource {
     void getAllFavoriteMeal(GetFavoriteMealCallback getFavoriteMealCallback);
     void insertFavoriteMeal(MealDetail mealDetail);
     void deleteFavoriteMeal(String idMeal);
-    void checkIsMealFavorite(String idMeal);
+    void checkIsMealFavorite(String idMeal, CheckFavoriteMealCallback checkFavoriteMealCallback);
 
     interface GetFavoriteMealCallback {
         void onMealFavoriteLoaded(List<MealFavorite> mealFavoriteList);
         void onDataNotAvailable(String message);
     }
 
+
+    interface CheckFavoriteMealCallback {
+        void onMealFound(MealFavorite mealFavorite);
+        void onMealNotFound();
+    }
 
 }

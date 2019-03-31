@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.osg31.resepmakanan.R;
 import com.osg31.resepmakanan.databinding.ItemMealFavoriteBinding;
+import com.osg31.resepmakanan.model.MealDetail;
 import com.osg31.resepmakanan.model.MealFavorite;
 
 import java.util.List;
@@ -47,6 +48,10 @@ public class AdapterListMealFavorite extends RecyclerView.Adapter<AdapterListMea
     @Override
     public long getItemId(int position) {
         return Long.valueOf(dataMealSet.get(position).getMealId());
+    }
+
+    public MealFavorite getItem(int position) {
+        return dataMealSet.get(position);
     }
 
     public void addAll(List<MealFavorite> dataBind) {

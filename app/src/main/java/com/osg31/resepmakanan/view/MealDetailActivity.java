@@ -5,25 +5,32 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.osg31.resepmakanan.Injection;
 import com.osg31.resepmakanan.R;
 import com.osg31.resepmakanan.model.MealDetail;
+import com.osg31.resepmakanan.navigator.AddFavoriteNavigator;
+import com.osg31.resepmakanan.navigator.DeleteFavoriteNavigator;
 import com.osg31.resepmakanan.navigator.DetailMealNavigator;
+import com.osg31.resepmakanan.navigator.FindFavoriteNavigator;
 import com.osg31.resepmakanan.viewmodel.MealDetailViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MealDetailActivity extends AppCompatActivity implements DetailMealNavigator {
+public class MealDetailActivity extends AppCompatActivity implements DetailMealNavigator, AddFavoriteNavigator, DeleteFavoriteNavigator, FindFavoriteNavigator {
 
     public static final String DETAIL = "detail";
 
@@ -34,27 +41,36 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
     @BindView(R.id.cl_detail_meal) CoordinatorLayout clDetailMeal;
     @BindView(R.id.collapsing_detail) CollapsingToolbarLayout collapsingDetail;
     @BindView(R.id.toolbar_detail) Toolbar toolbarDetail;
+    @BindView(R.id.fabFavorite) FloatingActionButton fabFavorite;
+
     private Menu collapsedMenu;
     private boolean appBarExpanded = true;
 
     private MealDetailViewModel mealViewModel;
     private AppBarLayout appBarLayout;
+    private String idMeal;
+    private Boolean isFavorite;
+    private MealDetail mealDetail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_detail);
         ButterKnife.bind(this);
 
-        String idMeal = getIntent().getStringExtra(DETAIL);
+        idMeal = getIntent().getStringExtra(DETAIL);
 
         mealViewModel = new MealDetailViewModel(Injection.provideMealRepository(this),
                 Injection.provideFavoriteRepository(this));
+
+        mealViewModel.setAddFavoriteNavigator(this);
+        mealViewModel.setDeleteFavoriteNavigator(this);
+        mealViewModel.setFindFavoriteNavigator(this);
         mealViewModel.setNavigator(this);
         mealViewModel.getDetailMeal(idMeal);
+
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            Log.d(MealDetailActivity.class.getSimpleName(), "onOffsetChanged: verticalOffset: " + verticalOffset);
-
             //  Vertical offset == 0 indicates appBar is fully expanded.
             if (Math.abs(verticalOffset) > 200) {
                 appBarExpanded = false;
@@ -63,6 +79,12 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
                 appBarExpanded = true;
                 invalidateOptionsMenu();
             }
+        });
+
+        fabFavorite.setOnClickListener(v -> {
+            Toast.makeText(this, "mealFavorite: " + isFavorite, Toast.LENGTH_SHORT).show();
+            if(isFavorite) mealViewModel.deleteFavorite(idMeal);
+            else mealViewModel.addFavorite(mealDetail);
         });
     }
 
@@ -79,6 +101,7 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
     public void loadDetailtMeal(MealDetail mealDetail) {
         initActionBar(mealDetail);
         loadMealDetail(mealDetail);
+        this.mealDetail = mealDetail;
     }
 
     @Override
@@ -104,11 +127,26 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
         if (collapsedMenu != null
                 && (!appBarExpanded || collapsedMenu.size() != 1)) {
             //collapsed
-            collapsedMenu.add("Add")
-                    .setIcon(R.drawable.ic_star_unchecked)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+            if(isFavorite) {
+                collapsedMenu.add("Add")
+                        .setIcon(R.drawable.ic_star_checked)
+                        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+            } else {
+                collapsedMenu.add("Add")
+                        .setIcon(R.drawable.ic_star_unchecked)
+                        .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+            }
         } else {
-            //expanded
+            if(isFavorite != null) {
+                if (isFavorite) {
+                    fabFavorite
+                            .setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_star_checked));
+                } else {
+                    fabFavorite
+                            .setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_star_unchecked));
+                }
+            }
         }
         return super.onPrepareOptionsMenu(collapsedMenu);
     }
@@ -116,6 +154,59 @@ public class MealDetailActivity extends AppCompatActivity implements DetailMealN
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         collapsedMenu = menu;
+        mealViewModel.checkIsMealFavorite(idMeal);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() != android.R.id.home) {
+            if (isFavorite) mealViewModel.deleteFavorite(idMeal);
+            else mealViewModel.addFavorite(mealDetail);
+        } else finish();
+        return true;
+    }
+
+    @Override
+    public void onSuccessAddFavorite() {
+        Toast.makeText(this, "Success save favorite meal", Toast.LENGTH_SHORT).show();
+        isFavorite = true;
+        fabFavorite
+                .setImageResource(R.drawable.ic_star_checked);
+
+    }
+
+    @Override
+    public void onFailedAddFavorite() {
+        Toast.makeText(this, "Failed save favorite meal", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSuccessDeleteFavorite() {
+        Toast.makeText(this, "Success delete favorite meal", Toast.LENGTH_SHORT).show();
+        isFavorite = false;
+
+        fabFavorite
+                .setImageResource(R.drawable.ic_star_unchecked);
+    }
+
+    @Override
+    public void onFailedDeleteFavorite() {
+        Toast.makeText(this, "Failed delete favorite meal", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onMealFound() {
+        isFavorite = true;
+
+        fabFavorite
+                .setImageResource(R.drawable.ic_star_checked);
+    }
+
+    @Override
+    public void onMealNotFound() {
+        isFavorite = false;
+        fabFavorite
+                .setImageResource(R.drawable.ic_star_unchecked);
     }
 }

@@ -58,9 +58,11 @@ public class FavoriteLocalDataSource implements MealFavoriteDataSource {
     }
 
     @Override
-    public void checkIsMealFavorite(String idMeal) {
+    public void checkIsMealFavorite(String idMeal, CheckFavoriteMealCallback checkFavoriteMealCallback) {
         Runnable runnable = () -> {
-            favoriteDao.findOneFavorite(idMeal);
+            MealFavorite mealFavorite = favoriteDao.findOneFavorite(idMeal);
+            if(mealFavorite != null) checkFavoriteMealCallback.onMealFound(mealFavorite);
+            else checkFavoriteMealCallback.onMealNotFound();
         };
 
         new Thread(runnable).start();
