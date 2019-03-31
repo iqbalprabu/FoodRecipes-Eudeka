@@ -2,7 +2,7 @@ package com.osg31.resepmakanan;
 
 import android.content.Context;
 
-import com.osg31.resepmakanan.data.FavoriteRepository;
+import com.osg31.resepmakanan.data.MealFavoriteRepository;
 import com.osg31.resepmakanan.data.MealRepository;
 import com.osg31.resepmakanan.data.local.FavoriteLocalDataSource;
 import com.osg31.resepmakanan.data.remote.MealRemoteDataSource;
@@ -17,8 +17,8 @@ public class Injection {
         return new MealRepository(new MealRemoteDataSource());
     }
 
-    public static FavoriteRepository provideFavoriteRepository(Context context) {
-        return new FavoriteRepository(new FavoriteLocalDataSource(context));
+    public static MealFavoriteRepository provideFavoriteRepository(Context context) {
+        return new MealFavoriteRepository(new FavoriteLocalDataSource(context));
     }
 
 }

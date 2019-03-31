@@ -44,4 +44,13 @@
         android:text="@string/search"
         tools:ignore="RtlHardcoded" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="right"
+        android:id="@+id/btn_favorite"
+        android:layout_marginTop="@dimen/dim_8dp"
+        android:text="@string/favorite"
+        tools:ignore="RtlHardcoded" />
+
 </LinearLayout>

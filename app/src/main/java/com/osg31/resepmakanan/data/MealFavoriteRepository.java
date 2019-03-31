@@ -40,7 +40,7 @@ public class MealFavoriteRepository implements MealFavoriteDataSource {
     }
 
     @Override
-    public void checkIsMealFavorite(String idMeal) {
-        favoriteLocalDataSource.checkIsMealFavorite(idMeal);
+    public void checkIsMealFavorite(String idMeal, CheckFavoriteMealCallback checkFavoriteMealCallback) {
+        favoriteLocalDataSource.checkIsMealFavorite(idMeal, checkFavoriteMealCallback);
     }
 }

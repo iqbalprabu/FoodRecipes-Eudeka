@@ -39,7 +39,6 @@
                 android:id="@+id/toolbar_detail"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:title="Detail Movie"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -67,7 +66,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:text="Kari Ayam"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@android:color/holo_orange_dark"
                 android:textStyle="bold" />
@@ -77,7 +75,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Kari Ayam"
                 android:textStyle="bold" />
 
             <TextView
@@ -87,13 +84,13 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:padding="@dimen/dim_16dp"
-                android:text="Kari Ayam"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabFavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

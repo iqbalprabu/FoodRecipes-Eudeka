@@ -1,7 +1,7 @@
 package com.osg31.resepmakanan.viewmodel;
 
-import com.osg31.resepmakanan.data.FavoriteRepository;
 import com.osg31.resepmakanan.data.MealFavoriteDataSource;
+import com.osg31.resepmakanan.data.MealFavoriteRepository;
 import com.osg31.resepmakanan.model.MealFavorite;
 import com.osg31.resepmakanan.navigator.FavoriteMealNavigator;
 
@@ -9,10 +9,10 @@ import java.util.List;
 
 public class ListFavoriteMealViewModel {
 
-    private FavoriteRepository favoriteRepository;
+    private MealFavoriteRepository favoriteRepository;
     private FavoriteMealNavigator favoriteMealNavigator;
 
-    public ListFavoriteMealViewModel(FavoriteRepository favoriteRepository) {
+    public ListFavoriteMealViewModel(MealFavoriteRepository favoriteRepository) {
         this.favoriteRepository = favoriteRepository;
     }
 
